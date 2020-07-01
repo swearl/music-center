@@ -2,7 +2,9 @@
     <v-row justify="center">
         <v-dialog persistent max-width="250" v-model="loginFormShow">
             <v-card>
-                <v-card-title>登录</v-card-title>
+                <v-system-bar>
+                    <span>登录</span>
+                </v-system-bar>
                 <v-card-text>
                     <v-text-field
                         label="昵称"
