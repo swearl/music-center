@@ -2,6 +2,7 @@
     <v-app>
         <background />
         <login-form />
+        <desktop />
     </v-app>
 </template>
 

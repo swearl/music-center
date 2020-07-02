@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         setNickname() {
-            this.$store.dispatch('user/setNickname', this.nickname)
+            this.$store.dispatch('user/login', this.nickname)
         }
     },
     computed: {

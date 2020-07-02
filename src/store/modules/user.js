@@ -11,12 +11,19 @@ const mutations = {
 }
 
 const actions = {
-    setNickname({ commit, dispatch }, nickname) {
+    login({ commit, dispatch }, nickname) {
         if (nickname != '') {
             commit('SET_NICKNAME', nickname)
             storage.set('Nickname', nickname)
             dispatch('loginForm/hide', null, { root: true })
+            dispatch('desktop/show', null, { root: true })
         }
+    },
+    logout({ commit, dispatch }) {
+        commit('SET_NICKNAME', '')
+        storage.del('Nickname')
+        dispatch('desktop/hide', null, { root: true })
+        dispatch('loginForm/show', null, { root: true })
     }
 }
 
