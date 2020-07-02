@@ -23,7 +23,7 @@ export default {
     computed: {
         ...mapGetters(['desktopShow', 'userNickname']),
         nowDateTime() {
-            return dayjs(this.now).format('YYYY年M月D日 HH:mm:ss dddd')
+            return dayjs(this.now).format('YYYY年M月D日 Ah点mm分 dddd')
         }
     },
     data() {
