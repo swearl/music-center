@@ -9,6 +9,10 @@ const getters = {
     // User
     userNickname: state => state.user.nickname,
 
+    // Loading
+    loadingShow: state => state.loading.show,
+    loadingText: state => state.loading.text,
+
     // Desktop
     desktopShow: state => state.desktop.show
 }

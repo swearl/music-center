@@ -3,6 +3,7 @@
         <background />
         <login-form />
         <desktop />
+        <loading />
     </v-app>
 </template>
 

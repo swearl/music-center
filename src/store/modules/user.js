@@ -16,7 +16,13 @@ const actions = {
             commit('SET_NICKNAME', nickname)
             storage.set('Nickname', nickname)
             dispatch('loginForm/hide', null, { root: true })
-            dispatch('desktop/show', null, { root: true })
+            dispatch(
+                'loading/show',
+                { text: '登录中', time: 3 },
+                { root: true }
+            ).then(() => {
+                dispatch('desktop/show', null, { root: true })
+            })
         }
     },
     logout({ commit, dispatch }) {
