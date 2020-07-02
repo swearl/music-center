@@ -2,6 +2,7 @@
     <v-container ref="desktop" v-if="desktopShow" fluid fill-height>
         <v-app-bar dense app>
             <v-spacer></v-spacer>
+            <v-btn text>{{ nowDateTime }}</v-btn>
             <v-btn
                 icon
                 v-html="userNickname"
@@ -13,11 +14,31 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
 
 export default {
     name: 'Desktop',
     computed: {
-        ...mapGetters(['desktopShow', 'userNickname'])
+        ...mapGetters(['desktopShow', 'userNickname']),
+        nowDateTime() {
+            return dayjs(this.now).format('YYYY年M月D日 HH:mm:ss dddd')
+        }
+    },
+    data() {
+        return {
+            now: new Date(),
+            intNew: null
+        }
+    },
+    created() {
+        this.intNew = setInterval(() => {
+            this.now = new Date()
+        }, 200)
+    },
+    beforeDestroy() {
+        clearInterval(this.intNew)
     }
 }
 </script>
