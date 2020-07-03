@@ -14,16 +14,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-dayjs.locale('zh-cn')
+import dayjs from '../../plugins/dayjs'
 
 export default {
     name: 'Desktop',
     computed: {
         ...mapGetters(['desktopShow', 'userNickname']),
         nowDateTime() {
-            return dayjs(this.now).format('YYYY年M月D日 Ah点mm分 dddd')
+            return dayjs(this.now).format('llll')
         }
     },
     data() {
@@ -46,6 +44,9 @@ export default {
                 this.windowResize()
             }
         }
+    },
+    mounted() {
+        this.windowResize()
     },
     methods: {
         windowResize() {
