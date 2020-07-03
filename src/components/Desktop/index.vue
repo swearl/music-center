@@ -39,6 +39,26 @@ export default {
     },
     beforeDestroy() {
         clearInterval(this.intNew)
+    },
+    watch: {
+        desktopShow(newVal, oldVal) {
+            if (newVal != oldVal && newVal) {
+                this.windowResize()
+            }
+        }
+    },
+    methods: {
+        windowResize() {
+            this.$nextTick().then(() => {
+                if (this.desktopShow) {
+                    const { clientWidth, clientHeight } = this.$refs.desktop
+                    this.$store.dispatch('desktop/setSize', {
+                        width: clientWidth,
+                        height: clientHeight
+                    })
+                }
+            })
+        }
     }
 }
 </script>

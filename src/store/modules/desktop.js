@@ -1,10 +1,18 @@
 const state = {
-    show: false
+    show: false,
+    width: 0,
+    height: 0
 }
 
 const mutations = {
     SET_SHOW(state, show) {
         state.show = show
+    },
+    SET_WIDTH(state, width) {
+        state.width = width
+    },
+    SET_HEIGHT(state, height) {
+        state.height = height
     }
 }
 
@@ -14,6 +22,10 @@ const actions = {
     },
     hide({ commit }) {
         commit('SET_SHOW', false)
+    },
+    setSize({ commit }, { width, height }) {
+        commit('SET_WIDTH', width)
+        commit('SET_HEIGHT', height)
     }
 }
 

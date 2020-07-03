@@ -14,7 +14,9 @@ const getters = {
     loadingText: state => state.loading.text,
 
     // Desktop
-    desktopShow: state => state.desktop.show
+    desktopShow: state => state.desktop.show,
+    desktopWidth: state => state.desktop.width,
+    desktopHeight: state => state.desktop.height
 }
 
 export default getters
