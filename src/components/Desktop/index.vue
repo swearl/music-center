@@ -9,6 +9,9 @@
                 @click="$store.dispatch('user/logout')"
             />
         </v-app-bar>
+        <v-main class="align-self-start align-self-stretch">
+            <slot></slot>
+        </v-main>
     </v-container>
 </template>
 
