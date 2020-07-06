@@ -5,10 +5,7 @@
         fluid
         fill-height
         :style="{
-            backgroundImage:
-                'url(' +
-                require(`@/assets/images/bg/${backgroundImage}.jpg`) +
-                ')'
+            backgroundImage: 'url(' + require(`@/assets/images/bg/${backgroundImage}.jpg`) + ')'
         }"
     ></v-container>
 </template>
