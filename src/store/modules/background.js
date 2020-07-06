@@ -2,7 +2,7 @@ import storage from '../../utils/storage'
 
 const state = {
     image: storage.get('BackgroundImage') || 'default',
-    style: storage.get('BackgroundStyle') || 'default'
+    style: storage.get('BackgroundStyle') || 'default',
 }
 
 const mutations = {
@@ -11,7 +11,7 @@ const mutations = {
     },
     SET_STYLE(state, style) {
         state.style = style
-    }
+    },
 }
 
 const actions = {
@@ -20,12 +20,12 @@ const actions = {
         commit('SET_STYLE', style)
         storage.set('BackgroundImage', image)
         storage.set('BackgroundStyle', style)
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     mutations,
-    actions
+    actions,
 }

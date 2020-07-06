@@ -1,13 +1,13 @@
 import storage from '../../utils/storage'
 
 const state = {
-    nickname: storage.get('Nickname') || ''
+    nickname: storage.get('Nickname') || '',
 }
 
 const mutations = {
     SET_NICKNAME(state, nickname) {
         state.nickname = nickname
-    }
+    },
 }
 
 const actions = {
@@ -26,12 +26,12 @@ const actions = {
         storage.del('Nickname')
         dispatch('desktop/hide', null, { root: true })
         dispatch('loginForm/show', null, { root: true })
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     mutations,
-    actions
+    actions,
 }

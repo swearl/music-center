@@ -15,16 +15,16 @@ export default {
     name: 'LoginForm',
     data() {
         return {
-            nickname: ''
+            nickname: '',
         }
     },
     methods: {
         setNickname() {
             this.$store.dispatch('user/login', this.nickname)
-        }
+        },
     },
     computed: {
-        ...mapGetters(['loginFormShow'])
-    }
+        ...mapGetters(['loginFormShow']),
+    },
 }
 </script>

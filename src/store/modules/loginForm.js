@@ -1,11 +1,11 @@
 const state = {
-    show: false
+    show: false,
 }
 
 const mutations = {
     SET_SHOW(state, show) {
         state.show = show
-    }
+    },
 }
 
 const actions = {
@@ -14,12 +14,12 @@ const actions = {
     },
     hide({ commit }) {
         commit('SET_SHOW', false)
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     mutations,
-    actions
+    actions,
 }

@@ -21,22 +21,22 @@ export default {
     props: {
         icon: {
             type: String,
-            default: ''
+            default: '',
         },
         title: {
             type: String,
-            default: ''
+            default: '',
         },
         btnClose: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     data() {
         return {
-            icons: { mdiClose }
+            icons: { mdiClose },
         }
-    }
+    },
 }
 </script>
 

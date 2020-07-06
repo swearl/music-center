@@ -7,7 +7,7 @@ const actions = {
                 dispatch('desktop/show')
             })
         }
-    }
+    },
 }
 
 export default actions

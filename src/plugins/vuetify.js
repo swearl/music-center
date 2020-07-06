@@ -7,9 +7,9 @@ Vue.use(Vuetify)
 export default new Vuetify({
     lang: {
         locales: { zhHans },
-        current: 'zh-Hans'
+        current: 'zh-Hans',
     },
     icons: {
-        iconfont: 'mdiSvg'
-    }
+        iconfont: 'mdiSvg',
+    },
 })

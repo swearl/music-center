@@ -12,6 +12,6 @@ export default {
     name: 'MusicCenter',
     mounted() {
         this.$store.dispatch('init')
-    }
+    },
 }
 </script>

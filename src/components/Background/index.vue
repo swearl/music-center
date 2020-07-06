@@ -5,7 +5,7 @@
         fluid
         fill-height
         :style="{
-            backgroundImage: 'url(' + require(`@/assets/images/bg/${backgroundImage}.jpg`) + ')'
+            backgroundImage: 'url(' + require(`@/assets/images/bg/${backgroundImage}.jpg`) + ')',
         }"
     ></v-container>
 </template>
@@ -16,8 +16,8 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'Background',
     computed: {
-        ...mapGetters(['backgroundImage', 'backgroundStyle'])
-    }
+        ...mapGetters(['backgroundImage', 'backgroundStyle']),
+    },
 }
 </script>
 

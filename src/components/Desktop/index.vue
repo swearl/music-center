@@ -3,11 +3,7 @@
         <v-app-bar dense app>
             <v-spacer></v-spacer>
             <v-btn text>{{ nowDateTime }}</v-btn>
-            <v-btn
-                icon
-                v-html="userNickname"
-                @click="$store.dispatch('user/logout')"
-            />
+            <v-btn icon v-html="userNickname" @click="$store.dispatch('user/logout')" />
         </v-app-bar>
         <v-main class="align-self-start align-self-stretch">
             <slot></slot>
@@ -25,12 +21,12 @@ export default {
         ...mapGetters(['desktopShow', 'userNickname']),
         nowDateTime() {
             return dayjs(this.now).format('llll')
-        }
+        },
     },
     data() {
         return {
             now: new Date(),
-            intNew: null
+            intNew: null,
         }
     },
     created() {
@@ -46,7 +42,7 @@ export default {
             if (newVal != oldVal && newVal) {
                 this.windowResize()
             }
-        }
+        },
     },
     mounted() {
         this.windowResize()
@@ -58,11 +54,11 @@ export default {
                     const { clientWidth, clientHeight } = this.$refs.desktop
                     this.$store.dispatch('desktop/setSize', {
                         width: clientWidth,
-                        height: clientHeight
+                        height: clientHeight,
                     })
                 }
             })
-        }
-    }
+        },
+    },
 }
 </script>

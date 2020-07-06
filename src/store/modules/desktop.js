@@ -1,7 +1,7 @@
 const state = {
     show: false,
     width: 0,
-    height: 0
+    height: 0,
 }
 
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
     },
     SET_HEIGHT(state, height) {
         state.height = height
-    }
+    },
 }
 
 const actions = {
@@ -26,12 +26,12 @@ const actions = {
     setSize({ commit }, { width, height }) {
         commit('SET_WIDTH', width)
         commit('SET_HEIGHT', height)
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     mutations,
-    actions
+    actions,
 }

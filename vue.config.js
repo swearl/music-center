@@ -10,6 +10,6 @@ module.exports = {
     devServer: {
         host: '0.0.0.0',
         disableHostCheck: true,
-        port: process.env.DEV_PORT
-    }
+        port: process.env.DEV_PORT,
+    },
 }

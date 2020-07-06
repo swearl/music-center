@@ -18,7 +18,7 @@ const storage = {
     },
     setJSON(name, value) {
         this.set(name, JSON.stringify(value))
-    }
+    },
 }
 
 export default storage

@@ -1,6 +1,6 @@
 const state = {
     show: false,
-    text: ''
+    text: '',
 }
 
 const mutations = {
@@ -9,7 +9,7 @@ const mutations = {
     },
     SET_TEXT(state, text) {
         state.text = text
-    }
+    },
 }
 
 const actions = {
@@ -36,12 +36,12 @@ const actions = {
     hide({ commit }) {
         commit('SET_TEXT', '')
         commit('SET_SHOW', false)
-    }
+    },
 }
 
 export default {
     namespaced: true,
     state,
     mutations,
-    actions
+    actions,
 }

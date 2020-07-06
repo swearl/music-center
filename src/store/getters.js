@@ -16,7 +16,7 @@ const getters = {
     // Desktop
     desktopShow: state => state.desktop.show,
     desktopWidth: state => state.desktop.width,
-    desktopHeight: state => state.desktop.height
+    desktopHeight: state => state.desktop.height,
 }
 
 export default getters
