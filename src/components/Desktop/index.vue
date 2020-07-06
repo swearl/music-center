@@ -5,8 +5,9 @@
             <v-btn text>{{ nowDateTime }}</v-btn>
             <v-btn icon v-html="userNickname" @click="$store.dispatch('user/logout')" />
         </v-app-bar>
-        <v-main class="align-self-start align-self-stretch">
-            <slot></slot>
+        <v-main class="align-self-start align-self-stretch main">
+            <v-row class="icons"></v-row>
+            <v-row class="apps"></v-row>
         </v-main>
     </v-container>
 </template>
@@ -62,3 +63,29 @@ export default {
     },
 }
 </script>
+
+<style lang="scss" scoped>
+.main {
+    > .v-main__wrap {
+        > .row {
+            position: absolute;
+        }
+        > .icons {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            z-index: 1;
+        }
+        > .apps {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            margin: -12px;
+        }
+    }
+}
+</style>

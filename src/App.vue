@@ -9,6 +9,10 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+    overflow-y: hidden !important;
+}
+
 #app {
     font-family: 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
     -webkit-font-smoothing: antialiased;
