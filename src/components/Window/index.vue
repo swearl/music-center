@@ -78,28 +78,7 @@ export default {
             window.addEventListener('mousemove', this.move)
         },
         move(e) {
-            if (this.moving) {
-                const { clientX, clientY } = e,
-                    moveX = clientX - this.mouseStartX,
-                    moveY = clientY - this.mouseStartY,
-                    maxLeft = this.desktopWidth - this.width,
-                    maxTop = this.desktopHeight - this.height
-                this.x = this.startX + moveX
-                this.y = this.startY + moveY
-                if (this.x > maxLeft - 10) {
-                    this.x = maxLeft
-                }
-                if (this.y > maxTop - 10) {
-                    this.y = maxTop
-                }
-                if (this.x < 10) {
-                    this.x = 0
-                }
-                if (this.y < 10) {
-                    this.y = 0
-                }
-                this.style = { left: `${this.x}px`, top: `${this.y}px` }
-            }
+            this.setPos(e)
         },
         up() {
             if (!this.moveable) {
@@ -125,6 +104,22 @@ export default {
                 this.height = clientHeight
             })
         },
+        setPos(e) {
+            this.$nextTick().then(() => {
+                if (this.moving) {
+                    const { clientX, clientY } = e,
+                        moveX = clientX - this.mouseStartX,
+                        moveY = clientY - this.mouseStartY,
+                        maxLeft = this.desktopWidth - this.width,
+                        maxTop = this.desktopHeight - this.height,
+                        x = this.startX + moveX,
+                        y = this.startY + moveY
+                    this.x = x > maxLeft - 10 ? maxLeft : x < 10 ? 0 : x
+                    this.y = y > maxTop - 10 ? maxTop : y < 10 ? 0 : y
+                    this.style = { left: `${this.x}px`, top: `${this.y}px` }
+                }
+            })
+        },
     },
 }
 </script>
@@ -147,6 +142,8 @@ export default {
     }
 
     &.moveable {
+        position: absolute;
+
         &.moving {
             cursor: move;
             user-select: none;

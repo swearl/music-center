@@ -21,8 +21,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.base-app {
-    position: absolute;
-}
-</style>
+<style lang="scss" scoped></style>
