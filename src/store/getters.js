@@ -17,6 +17,12 @@ const getters = {
     desktopShow: state => state.desktop.show,
     desktopWidth: state => state.desktop.width,
     desktopHeight: state => state.desktop.height,
+
+    // Music
+    musicWidth: state => state.music.width,
+    musicHeight: state => state.music.height,
+    musicX: state => state.music.x,
+    musicY: state => state.music.y,
 }
 
 export default getters

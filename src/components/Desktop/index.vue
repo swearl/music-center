@@ -3,11 +3,13 @@
         <v-app-bar dense app>
             <v-spacer></v-spacer>
             <v-btn text>{{ nowDateTime }}</v-btn>
-            <v-btn icon v-html="userNickname" @click="$store.dispatch('user/logout')" />
+            <v-avatar v-html="userNickname" @click="$store.dispatch('user/logout')" />
         </v-app-bar>
         <v-main class="align-self-start align-self-stretch main">
             <v-row class="icons"></v-row>
-            <v-row class="apps"></v-row>
+            <v-row class="apps">
+                <music-app />
+            </v-row>
         </v-main>
     </v-container>
 </template>
@@ -52,11 +54,10 @@ export default {
         windowResize() {
             this.$nextTick().then(() => {
                 if (this.desktopShow) {
-                    const { clientWidth, clientHeight } = this.$refs.desktop
-                    this.$store.dispatch('desktop/setSize', {
-                        width: clientWidth,
-                        height: clientHeight,
-                    })
+                    const { clientWidth, clientHeight } = this.$refs.desktop,
+                        width = clientWidth,
+                        height = clientHeight - 48
+                    this.$store.dispatch('desktop/setSize', { width, height })
                 }
             })
         },
