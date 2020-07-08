@@ -36,6 +36,7 @@ export default {
         this.intNew = setInterval(() => {
             this.now = new Date()
         }, 200)
+        window.addEventListener('resize', this.windowResize)
     },
     beforeDestroy() {
         clearInterval(this.intNew)

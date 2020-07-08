@@ -148,7 +148,7 @@ export default {
             cursor: move;
             user-select: none;
 
-            .app-title {
+            .window-title {
                 cursor: move;
             }
         }

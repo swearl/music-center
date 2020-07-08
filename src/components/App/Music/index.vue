@@ -1,5 +1,6 @@
 <template>
     <base-app title="音乐" class="music-app" ref="MusicApp" @drop="drop">
+        <v-progress-linear :value="50" height="3"></v-progress-linear>
         <div v-html="`Desktop: ${desktopWidth} x ${desktopHeight}`"></div>
         <div v-html="`App: ${musicWidth} x ${musicHeight}`"></div>
     </base-app>
@@ -31,6 +32,5 @@ export default {
 <style lang="scss" scoped>
 .music-app {
     width: 300px;
-    height: 100px;
 }
 </style>
