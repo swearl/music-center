@@ -1,7 +1,17 @@
 <template>
     <base-app title="音乐" class="music-app" ref="MusicApp" @drop="drop">
-        <div v-html="`Desktop: ${desktopWidth} x ${desktopHeight}`"></div>
-        <div v-html="`App: ${musicWidth} x ${musicHeight}`"></div>
+        <v-row class="ma-0">
+            <v-col class="pa-0" cols="auto">
+                <v-avatar size="100" tile>
+                    <v-img src="@/assets/images/bg/default.jpg" />
+                </v-avatar>
+            </v-col>
+            <v-col>
+                <div>Title</div>
+                <div>Artist</div>
+            </v-col>
+        </v-row>
+        <v-progress-linear height="3" class="ma-0" color="primary" value="40" />
     </base-app>
 </template>
 
@@ -31,6 +41,5 @@ export default {
 <style lang="scss" scoped>
 .music-app {
     width: 300px;
-    height: 100px;
 }
 </style>
