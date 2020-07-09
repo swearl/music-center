@@ -1,10 +1,5 @@
 <template>
-    <v-card
-        class="window"
-        ref="Window"
-        :class="`${moveable ? 'moveable' : ''} ${moving ? 'moving' : ''}`"
-        :style="style"
-    >
+    <v-card class="window" ref="Window" :class="{ moveable, moving }" :style="style">
         <v-system-bar @mousedown="down">
             <span class="window-title" v-if="title != ''" v-html="title" />
             <v-spacer v-if="btnClose" />
@@ -12,7 +7,10 @@
                 <v-icon>{{ icons.mdiClose }}</v-icon>
             </v-btn>
         </v-system-bar>
-        <v-card-text>
+        <template v-if="fluid">
+            <slot />
+        </template>
+        <v-card-text v-else>
             <slot />
         </v-card-text>
     </v-card>
@@ -38,6 +36,10 @@ export default {
             default: false,
         },
         moveable: {
+            type: Boolean,
+            default: false,
+        },
+        fluid: {
             type: Boolean,
             default: false,
         },
@@ -148,7 +150,7 @@ export default {
             cursor: move;
             user-select: none;
 
-            .app-title {
+            .window-title {
                 cursor: move;
             }
         }

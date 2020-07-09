@@ -1,5 +1,5 @@
 <template>
-    <window :title="title" class="base-app" btn-close moveable @drop="drop">
+    <window :title="title" class="base-app" btn-close moveable @drop="drop" fluid>
         <slot />
     </window>
 </template>
