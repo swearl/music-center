@@ -3,6 +3,7 @@ import storage from '../../utils/storage'
 const state = {
     image: storage.get('BackgroundImage') || 'default',
     style: storage.get('BackgroundStyle') || 'default',
+    blur: true,
 }
 
 const mutations = {
@@ -12,6 +13,9 @@ const mutations = {
     SET_STYLE(state, style) {
         state.style = style
     },
+    SET_BLUR(state, blur) {
+        state.blur = blur
+    },
 }
 
 const actions = {
@@ -20,6 +24,9 @@ const actions = {
         commit('SET_STYLE', style)
         storage.set('BackgroundImage', image)
         storage.set('BackgroundStyle', style)
+    },
+    setBlur({ commit }, blur) {
+        commit('SET_BLUR', blur)
     },
 }
 

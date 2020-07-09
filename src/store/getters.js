@@ -2,6 +2,7 @@ const getters = {
     // Background
     backgroundImage: state => state.background.image,
     backgroundStyle: state => state.background.style,
+    backgroundBlur: state => state.background.blur,
 
     // LoginForm
     loginFormShow: state => state.loginForm.show,
