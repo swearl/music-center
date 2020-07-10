@@ -1,7 +1,10 @@
 <template>
     <v-container
         class="bg"
-        :class="`bg-style-${backgroundStyle}`"
+        :class="{
+            [`bg-style-${backgroundStyle}`]: true,
+            blur: backgroundBlur,
+        }"
         fluid
         fill-height
         :style="{
@@ -16,7 +19,7 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'Background',
     computed: {
-        ...mapGetters(['backgroundImage', 'backgroundStyle']),
+        ...mapGetters(['backgroundImage', 'backgroundStyle', 'backgroundBlur']),
     },
 }
 </script>
@@ -31,6 +34,10 @@ export default {
     &.bg-style-default {
         background-position: center center;
         background-size: cover;
+    }
+
+    &.blur {
+        filter: blur(10px);
     }
 }
 </style>
