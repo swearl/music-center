@@ -3,6 +3,7 @@
         <v-app-bar dense app>
             <v-spacer></v-spacer>
             <v-btn text>{{ nowDateTime }}</v-btn>
+            <volume-icon />
             <v-avatar v-html="userNickname" @click="$store.dispatch('user/logout')" />
         </v-app-bar>
         <v-main class="align-self-start align-self-stretch main">

@@ -7,6 +7,7 @@ const state = {
     y: storage.getJSON('Music')['y'] || 0,
     width: 0,
     height: 0,
+    volume: storage.get('MusicVolume') || 50,
 }
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
     SET_Y(state, y) {
         state.y = y
     },
+    SET_VOLUME(state, volume) {
+        state.volume = volume
+    },
 }
 
 const actions = {
@@ -33,6 +37,10 @@ const actions = {
         commit('SET_X', x)
         commit('SET_Y', y)
         storage.setJSON('Music', { x, y })
+    },
+    setVolume({ commit }, volume) {
+        commit('SET_VOLUME', volume)
+        storage.set('MusicVolume', volume)
     },
 }
 
