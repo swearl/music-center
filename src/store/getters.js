@@ -25,6 +25,7 @@ const getters = {
     musicX: state => state.music.x,
     musicY: state => state.music.y,
     musicVolume: state => state.music.volume,
+    musicPlaying: state => state.music.playing,
 }
 
 export default getters
