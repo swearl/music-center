@@ -18,7 +18,7 @@
                 </v-slide-y-reverse-transition>
             </div>
         </v-hover>
-        <v-progress-linear height="3" class="ma-0" color="primary" :value="musicPlaying.progress" />
+        <v-progress-linear height="3" class="ma-0 progress" color="primary" v-model="progress" />
     </base-app>
 </template>
 
@@ -44,6 +44,14 @@ export default {
                 return [min.toString().padStart(2, '0'), sec.toString().padStart(2, '0')].join(':')
             }
             return '00:00'
+        },
+        progress: {
+            get() {
+                return this.musicPlaying.progress
+            },
+            set(val) {
+                this.$store.dispatch('music/setProgress', val)
+            },
         },
     },
     data() {
@@ -96,6 +104,10 @@ export default {
                 }
             }
         }
+    }
+
+    .progress {
+        cursor: pointer;
     }
 }
 </style>

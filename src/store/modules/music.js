@@ -1,14 +1,6 @@
 import storage from '../../utils/storage'
 import audio from '../../utils/audio'
 
-// const progress = ({target}) => {
-//     let {currentTime, duration} = target,
-//         current = Math.floor(currentTime)
-//     duration = Math.floor(duration),
-//     const progress = Math.round(current/duration * 100)
-
-// }
-
 const state = {
     name: 'music',
     zIndex: 10,
@@ -56,7 +48,13 @@ const actions = {
         audio.volume(volume)
         storage.set('MusicVolume', volume)
     },
-    setPlaying({ commit, state }, playing) {
+    setProgress({ state }, progress) {
+        if (state.playing.duration) {
+            const t = Math.floor((state.playing.duration * progress) / 100)
+            audio.setProgress(t)
+        }
+    },
+    setPlaying({ commit, state, dispatch }, playing) {
         audio.volume(state.volume)
         audio.set(playing.src)
         audio.progress(({ target }) => {
@@ -65,7 +63,16 @@ const actions = {
             playing.duration = Math.floor(duration)
             playing.progress = Math.round((playing.current / playing.duration) * 100)
             commit('SET_PLAYING', playing)
+            if (playing.cover) {
+                dispatch('background/setCover', playing.cover, { root: true })
+            }
             storage.setJSON('MusicPlaying', playing)
+        })
+        audio.ended(() => {
+            const playing = {}
+            commit('SET_PLAYING', playing)
+            storage.setJSON('MusicPlaying', playing)
+            dispatch('background/setCover', '', { root: true })
         })
         audio.play()
     },

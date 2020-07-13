@@ -9,6 +9,9 @@ const audio = {
     progress(f) {
         this.instance.ontimeupdate = f
     },
+    ended(f) {
+        this.instance.onended = f
+    },
     volume(v) {
         this.instance.volume = v / 100
     },
@@ -17,6 +20,9 @@ const audio = {
     },
     play() {
         this.instance.play()
+    },
+    setProgress(current) {
+        this.instance.currentTime = current
     },
 }
 
