@@ -12,8 +12,8 @@
                             <div class="text-body-1" v-html="musicPlaying.artist"></div>
                             <play-icon />
                         </div>
-                        <div class="text-caption time-current ml-2" v-html="musicPlaying.current">00:00</div>
-                        <div class="text-caption time-total mr-2" v-html="musicPlaying.duration">00:00</div>
+                        <div class="text-caption time-current ml-2" v-html="currentTime">00:00</div>
+                        <div class="text-caption time-total mr-2" v-html="durationTime">00:00</div>
                     </v-overlay>
                 </v-slide-y-reverse-transition>
             </div>
@@ -29,6 +29,22 @@ export default {
     name: 'MusicApp',
     computed: {
         ...mapGetters(['desktopWidth', 'desktopHeight', 'musicWidth', 'musicHeight', 'musicPlaying']),
+        currentTime() {
+            if (this.musicPlaying.current) {
+                const min = Math.floor(this.musicPlaying.current / 60),
+                    sec = this.musicPlaying.current % 60
+                return [min.toString().padStart(2, '0'), sec.toString().padStart(2, '0')].join(':')
+            }
+            return '00:00'
+        },
+        durationTime() {
+            if (this.musicPlaying.duration) {
+                const min = Math.floor(this.musicPlaying.duration / 60),
+                    sec = this.musicPlaying.duration % 60
+                return [min.toString().padStart(2, '0'), sec.toString().padStart(2, '0')].join(':')
+            }
+            return '00:00'
+        },
     },
     data() {
         return {
