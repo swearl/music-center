@@ -56,7 +56,8 @@ const actions = {
         audio.volume(volume)
         storage.set('MusicVolume', volume)
     },
-    setPlaying({ commit }, playing) {
+    setPlaying({ commit, state }, playing) {
+        audio.volume(state.volume)
         audio.set(playing.src)
         audio.progress(({ target }) => {
             const { currentTime, duration } = target
