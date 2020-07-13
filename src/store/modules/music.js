@@ -53,6 +53,7 @@ const actions = {
     },
     setVolume({ commit }, volume) {
         commit('SET_VOLUME', volume)
+        audio.volume(volume)
         storage.set('MusicVolume', volume)
     },
     setPlaying({ commit }, playing) {

@@ -9,13 +9,9 @@ const audio = {
     progress(f) {
         this.instance.ontimeupdate = f
     },
-    // progress({target}) {
-    //     let {currentTime, duration} = target,
-    //     current = Math.floor(currentTime),
-    //     duration = Math.floor(duration),
-    //     progress =
-    //     console.log(e)
-    // },
+    volume(v) {
+        this.instance.volume = v / 100
+    },
     set(src) {
         this.instance.src = src
     },

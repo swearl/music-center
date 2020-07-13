@@ -17,8 +17,8 @@ export default {
     methods: {
         play() {
             const src =
-                    'https://dl.stream.qqmusic.qq.com/M500000hPD463wBdk6.mp3?guid=1078182211&vkey=FE87875029D8F0BA2851A879067CFE401A57585EEBA283B6CA00C85D2E9CE6E5EBD951B45E8532D4DEF8CB5954A74261F7229EB2B0A54520&uin=0&fromtag=66',
-                cover = 'https://y.gtimg.cn/music/photo_new/T002R500x500M000004T02kD1ybahm_1.jpg?max_age=2592000',
+                    'https://dl.stream.qqmusic.qq.com/M8000042qvw60RlPuE.mp3?guid=130258400&vkey=F8980DE72EF84C1FC831DCFB7FC11FE95F0D70CE12335DE60033759B7B3BCCAEBC2FC78944B1B0A7D865FBF3991B256FC2948DF231DACAB8&uin=0&fromtag=66',
+                cover = 'https://y.gtimg.cn/music/photo_new/T002R500x500M0000018ITXw4OQkVD.jpg?max_age=2592000',
                 title = 'unlasting',
                 artist = 'LiSA',
                 status = ''
