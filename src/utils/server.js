@@ -1,8 +1,8 @@
 import io from 'socket.io-client'
 
 const server = {
-    // url: 'http://swearl.asuscomm.com:42004',
-    url: 'http://localhost:42004',
+    url: 'http://swearl.asuscomm.com:42004',
+    // url: 'http://localhost:42004',
     socket: null,
     init() {
         if (this.socket === null) {
