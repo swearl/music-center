@@ -3,14 +3,14 @@
         <v-hover v-slot:default="{ hover }" close-delay="500">
             <div class="content">
                 <v-avatar size="300" tile>
-                    <v-img :src="musicPlaying.cover" />
+                    <v-img :src="musicPlaying.pic" />
                 </v-avatar>
                 <v-slide-y-reverse-transition>
                     <v-overlay absolute v-if="hover">
                         <div class="d-flex flex-grow-1 flex-column justify-center align-center">
                             <div class="text-subtitle-1" v-html="musicPlaying.title"></div>
-                            <div class="text-body-1" v-html="musicPlaying.artist"></div>
-                            <play-icon />
+                            <div class="text-body-1" v-html="musicPlaying.author"></div>
+                            <play-icon v-if="musicPlaying.index === undefined" />
                         </div>
                         <div class="text-caption time-current ml-2" v-html="currentTime">00:00</div>
                         <div class="text-caption time-total mr-2" v-html="durationTime">00:00</div>
@@ -18,7 +18,7 @@
                 </v-slide-y-reverse-transition>
             </div>
         </v-hover>
-        <v-progress-linear height="3" class="ma-0 progress" color="primary" v-model="progress" />
+        <v-progress-linear height="3" class="ma-0 progress" color="primary" :value="progress" />
     </base-app>
 </template>
 
@@ -106,8 +106,8 @@ export default {
         }
     }
 
-    .progress {
-        cursor: pointer;
-    }
+    // .progress {
+    //     cursor: pointer;
+    // }
 }
 </style>

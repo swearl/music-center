@@ -1,4 +1,5 @@
 import storage from '../../utils/storage'
+import server from '../../utils/server'
 
 const state = {
     nickname: storage.get('Nickname') || '',
@@ -16,8 +17,16 @@ const actions = {
             commit('SET_NICKNAME', nickname)
             storage.set('Nickname', nickname)
             dispatch('loginForm/hide', null, { root: true })
-            dispatch('loading/show', { text: '登录中', time: 3 }, { root: true }).then(() => {
-                dispatch('desktop/show', null, { root: true })
+            dispatch('loading/show', { text: '登录中' }, { root: true }).then(() => {
+                console.log('connect')
+                server.connect()
+                server.on('connect', () => {
+                    server.emit('login', { nickname })
+                    console.log('connected')
+                    dispatch('loading/hide', null, { root: true })
+                    dispatch('desktop/show', null, { root: true })
+                    // dispatch('music/play', null, { root: true })
+                })
             })
         }
     },

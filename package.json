@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "dayjs": "^1.8.29",
+    "socket.io-client": "^2.3.0",
     "vue": "^2.6.11",
     "vuetify": "^2.3.4",
     "vuex": "^3.5.1"

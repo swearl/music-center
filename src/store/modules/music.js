@@ -1,5 +1,6 @@
 import storage from '../../utils/storage'
 import audio from '../../utils/audio'
+import server from '../../utils/server'
 
 const state = {
     name: 'music',
@@ -9,7 +10,8 @@ const state = {
     width: 0,
     height: 0,
     volume: storage.get('MusicVolume') || 50,
-    playing: storage.getJSON('MusicPlaying') || { src: '', title: '', artist: '', cover: '', status: '' },
+    // playing: storage.getJSON('MusicPlaying') || { url: '', title: '', author: '', pic: '', status: '' },
+    playing: { url: '', title: '', author: '', pic: '', status: '' },
 }
 
 const mutations = {
@@ -56,25 +58,35 @@ const actions = {
     },
     setPlaying({ commit, state, dispatch }, playing) {
         audio.volume(state.volume)
-        audio.set(playing.src)
+        audio.set(playing.url)
         audio.progress(({ target }) => {
             const { currentTime, duration } = target
             playing.current = Math.floor(currentTime)
             playing.duration = Math.floor(duration)
             playing.progress = Math.round((playing.current / playing.duration) * 100)
             commit('SET_PLAYING', playing)
-            if (playing.cover) {
-                dispatch('background/setCover', playing.cover, { root: true })
+            if (playing.pic) {
+                dispatch('background/setCover', playing.pic, { root: true })
             }
-            storage.setJSON('MusicPlaying', playing)
+            // storage.setJSON('MusicPlaying', playing)
         })
-        audio.ended(() => {
-            const playing = {}
-            commit('SET_PLAYING', playing)
-            storage.setJSON('MusicPlaying', playing)
-            dispatch('background/setCover', '', { root: true })
-        })
+        if (playing.current && playing.current > 3) {
+            audio.setProgress(playing.current)
+        }
+        // audio.ended(() => {
+        //     const playing = {}
+        //     commit('SET_PLAYING', playing)
+        //     storage.setJSON('MusicPlaying', playing)
+        //     dispatch('background/setCover', '', { root: true })
+        // })
         audio.play()
+    },
+    play({ dispatch }) {
+        server.on('play', ({ playing }) => {
+            console.log(playing)
+            dispatch('setPlaying', playing)
+        })
+        server.emit('playing')
     },
 }
 
