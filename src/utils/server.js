@@ -14,8 +14,11 @@ const server = {
     emit(event, data, cb) {
         this.socket.emit(event, data, cb)
     },
-    connect() {
-        this.socket.connect()
+    open() {
+        this.socket.open()
+    },
+    close() {
+        this.socket.close()
     },
     on(event, cb) {
         this.socket.on(event, res => cb(res))

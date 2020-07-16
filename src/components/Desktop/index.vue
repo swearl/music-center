@@ -4,7 +4,9 @@
             <v-spacer></v-spacer>
             <v-btn text>{{ nowDateTime }}</v-btn>
             <volume-icon />
-            <v-avatar v-html="userNickname" @click="$store.dispatch('user/logout')" />
+            <v-btn @click="$store.dispatch('user/logout')" icon mini>
+                <v-avatar v-html="userNickname.substring(0, 2)" />
+            </v-btn>
         </v-app-bar>
         <v-main class="align-self-start align-self-stretch main">
             <v-row class="icons"></v-row>

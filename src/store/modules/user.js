@@ -19,7 +19,7 @@ const actions = {
             dispatch('loginForm/hide', null, { root: true })
             dispatch('loading/show', { text: '登录中' }, { root: true }).then(() => {
                 console.log('connect')
-                server.connect()
+                server.open()
                 server.on('connect', () => {
                     server.emit('login', { nickname })
                     console.log('connected')
@@ -33,6 +33,8 @@ const actions = {
     logout({ commit, dispatch }) {
         commit('SET_NICKNAME', '')
         storage.del('Nickname')
+        server.close()
+        console.log('disconnected')
         dispatch('desktop/hide', null, { root: true })
         dispatch('loginForm/show', null, { root: true })
     },
