@@ -128,7 +128,7 @@ export default {
             if (!this.moveable || this.name === '') {
                 return false
             }
-            console.log('focus')
+            // console.log('focus')
             this.$store.dispatch('desktop/setFocus', this.name)
         },
         initWindow() {

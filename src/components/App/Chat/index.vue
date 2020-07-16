@@ -9,24 +9,19 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-            <template v-if="userOnline.length > 1">
+            <template v-if="userOnline.length">
                 <v-divider></v-divider>
-                <v-subheader inset>在线用户</v-subheader>
+                <v-subheader>在线用户</v-subheader>
                 <v-list two-line subheader>
-                    <template v-for="user in userOnline">
-                        <v-list-item :key="user.sid" v-if="user.sid !== userSocketID" @click="clickUser">
-                            <v-list-item-avatar>
-                                <v-icon v-text="icon.mdiAccount"></v-icon>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title v-text="user.nickname"></v-list-item-title>
-                                <v-list-item-subtitle
-                                    v-if="user.status !== ''"
-                                    v-text="user.status"
-                                ></v-list-item-subtitle>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </template>
+                    <v-list-item v-for="user in userOnline" :key="user.sid" @click="clickUser">
+                        <v-list-item-avatar>
+                            <v-icon v-text="icon.mdiAccount"></v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title v-text="user.nickname"></v-list-item-title>
+                            <v-list-item-subtitle v-if="user.status !== ''" v-text="user.status"></v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
                 </v-list>
             </template>
         </v-card>

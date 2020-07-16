@@ -35,14 +35,19 @@ const actions = {
                 server.on('connect', () => {
                     server.emit('login', { nickname }, ({ socketID, onlineUsers }) => {
                         commit('SET_SOCKET_ID', socketID)
-                        commit('SET_ONLINE', onlineUsers)
+                        const online = onlineUsers.filter(user => user.sid != socketID)
+                        dispatch('setOnline', online)
                     })
                     console.log('connected')
                     dispatch('loading/hide', null, { root: true })
                     dispatch('desktop/show', null, { root: true })
                     // dispatch('music/play', null, { root: true })
                 })
-                // server.on('joined',)
+                server.on('joined', ({ nickname, socketID, status }) => {
+                    dispatch('addOnline', { nickname, sid: socketID, status })
+                })
+                server.on('left', ({ socketID }) => dispatch('delOnline', socketID))
+                server.on('user status', ({ socketID, status }) => dispatch('setOnlineStatus', { socketID, status }))
             })
         }
     },
@@ -59,8 +64,28 @@ const actions = {
         commit('SET_STATUS', status)
         server.emit('user status', { status })
     },
-    updateOnline({ commit }, online) {
+    setOnline({ commit }, online) {
         commit('SET_ONLINE', online)
+    },
+    addOnline({ dispatch, state }, user) {
+        let online = state.online
+        online.push(user)
+        dispatch('setOnline', online)
+    },
+    delOnline({ dispatch, state }, socketID) {
+        let online = state.online
+        online = online.filter(user => user.sid !== socketID)
+        dispatch('setOnline', online)
+    },
+    setOnlineStatus({ dispatch, state }, { socketID, status }) {
+        let online = state.online
+        online = online.map(user => {
+            if (user.sid === socketID) {
+                user.status = status
+            }
+            return user
+        })
+        dispatch('setOnline', online)
     },
 }
 
