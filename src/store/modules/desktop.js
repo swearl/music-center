@@ -2,7 +2,10 @@ const state = {
     show: false,
     width: 0,
     height: 0,
-    apps: {},
+    apps: {
+        chat: true,
+        music: true,
+    },
 }
 
 const mutations = {
@@ -27,6 +30,22 @@ const actions = {
     setSize({ commit }, { width, height }) {
         commit('SET_WIDTH', width)
         commit('SET_HEIGHT', height)
+    },
+    setFocus({ state, rootState, dispatch }, app) {
+        var z = 0,
+            max = 10
+        for (var k in state.apps) {
+            if (k !== app) {
+                z = rootState[k].zIndex
+                if (z > 10) {
+                    z--
+                }
+                max = max < z ? z : max
+                dispatch(`${k}/setZIndex`, z, { root: true })
+            }
+        }
+        max++
+        dispatch(`${app}/setZIndex`, max, { root: true })
     },
 }
 

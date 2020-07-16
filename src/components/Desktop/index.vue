@@ -5,13 +5,14 @@
             <v-btn text>{{ nowDateTime }}</v-btn>
             <volume-icon />
             <v-btn @click="$store.dispatch('user/logout')" icon mini>
-                <v-avatar v-html="userNickname.substring(0, 2)" />
+                <v-avatar v-html="userNickname.substring(0, 1)" />
             </v-btn>
         </v-app-bar>
         <v-main class="align-self-start align-self-stretch main">
             <v-row class="icons"></v-row>
             <v-row class="apps">
                 <music-app />
+                <chat-app />
             </v-row>
         </v-main>
     </v-container>

@@ -1,5 +1,5 @@
 <template>
-    <v-card class="window" ref="Window" :class="{ moveable, moving }" :style="style">
+    <v-card class="window" ref="Window" @mousedown.passive="focus" :class="{ moveable, moving }" :style="style">
         <v-system-bar @mousedown="down">
             <span class="window-title" v-if="title != ''" v-html="title" />
             <v-spacer v-if="btnClose" />
@@ -43,11 +43,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        name: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
             icons: { mdiClose },
-            style: '',
             moving: false,
             x: 0,
             y: 0,
@@ -60,14 +63,41 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['musicX', 'musicY', 'desktopWidth', 'desktopHeight']),
+        ...mapGetters(['desktopWidth', 'desktopHeight']),
+        windowX() {
+            if (!this.moveable || this.name === '') {
+                return 0
+            }
+            const key = `${this.name}X`
+            return this.$store.getters[key]
+        },
+        windowY() {
+            if (!this.moveable || this.name === '') {
+                return 0
+            }
+            const key = `${this.name}Y`
+            return this.$store.getters[key]
+        },
+        windowZ() {
+            if (!this.moveable || this.name === '') {
+                return false
+            }
+            const key = `${this.name}Z`
+            return this.$store.getters[key]
+        },
+        style() {
+            if (!this.moveable) {
+                return ''
+            }
+            return { left: `${this.x}px`, top: `${this.y}px`, zIndex: this.windowZ }
+        },
     },
     mounted() {
         this.initWindow()
     },
     methods: {
         down(e) {
-            if (!this.moveable) {
+            if (!this.moveable || this.name === '') {
                 return false
             }
             this.moving = true
@@ -83,7 +113,7 @@ export default {
             this.setPos(e)
         },
         up() {
-            if (!this.moveable) {
+            if (!this.moveable || this.name === '') {
                 this.style = ''
                 return false
             }
@@ -94,12 +124,20 @@ export default {
         close() {
             this.$emit('close')
         },
+        focus() {
+            if (!this.moveable || this.name === '') {
+                return false
+            }
+            console.log('focus')
+            this.$store.dispatch('desktop/setFocus', this.name)
+        },
         initWindow() {
             this.$nextTick().then(() => {
                 if (this.moveable) {
-                    this.x = this.musicX
-                    this.y = this.musicY
-                    this.style = { left: `${this.x}px`, top: `${this.y}px` }
+                    console.log(this.windowX, this.windowY)
+                    this.x = this.windowX
+                    this.y = this.windowY
+                    // this.style = { left: `${this.x}px`, top: `${this.y}px` }
                 }
                 const { clientWidth, clientHeight } = this.$refs.Window.$el
                 this.width = clientWidth
@@ -118,7 +156,7 @@ export default {
                         y = this.startY + moveY
                     this.x = x > maxLeft - 10 ? maxLeft : x < 10 ? 0 : x
                     this.y = y > maxTop - 10 ? maxTop : y < 10 ? 0 : y
-                    this.style = { left: `${this.x}px`, top: `${this.y}px` }
+                    // this.style = { left: `${this.x}px`, top: `${this.y}px` }
                 }
             })
         },

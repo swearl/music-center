@@ -27,6 +27,9 @@ const mutations = {
     SET_Y(state, y) {
         state.y = y
     },
+    SET_ZINDEX(state, zIndex) {
+        state.zIndex = zIndex
+    },
     SET_VOLUME(state, volume) {
         state.volume = volume
     },
@@ -40,10 +43,16 @@ const actions = {
         commit('SET_WIDTH', width)
         commit('SET_HEIGHT', height)
     },
-    setPos({ commit }, { x, y }) {
+    setPos({ commit, state }, { x, y }) {
         commit('SET_X', x)
         commit('SET_Y', y)
-        storage.setJSON('Music', { x, y })
+        const z = state.zIndex
+        storage.setJSON('Music', { x, y, z })
+    },
+    setZIndex({ commit, state }, z) {
+        commit('SET_ZINDEX', z)
+        const { x, y } = state
+        storage.setJSON('Music', { x, y, z })
     },
     setVolume({ commit }, volume) {
         commit('SET_VOLUME', volume)

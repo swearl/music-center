@@ -1,5 +1,5 @@
 <template>
-    <base-app title="音乐" class="music-app" ref="MusicApp" @drop="drop">
+    <base-app name="music" title="音乐" class="music-app" ref="MusicApp" @drop="drop">
         <v-hover v-slot:default="{ hover }" close-delay="500">
             <div class="content">
                 <v-avatar size="300" tile>
@@ -53,12 +53,6 @@ export default {
                 this.$store.dispatch('music/setProgress', val)
             },
         },
-    },
-    data() {
-        return {
-            audio: null,
-            playing: {},
-        }
     },
     mounted() {
         const { clientWidth, clientHeight } = this.$refs.MusicApp.$el

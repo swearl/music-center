@@ -1,5 +1,5 @@
 <template>
-    <window :title="title" class="base-app" btn-close moveable @drop="drop" fluid>
+    <window :name="name" :title="title" class="base-app" btn-close moveable @drop="drop" fluid>
         <slot />
     </window>
 </template>
@@ -9,6 +9,10 @@ export default {
     name: 'BaseApp',
     props: {
         title: {
+            type: String,
+            default: '',
+        },
+        name: {
             type: String,
             default: '',
         },
