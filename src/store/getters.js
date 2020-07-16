@@ -10,6 +10,9 @@ const getters = {
 
     // User
     userNickname: state => state.user.nickname,
+    userStatus: state => state.user.status,
+    userSocketID: state => state.user.socketID,
+    userOnline: state => state.user.online,
 
     // Loading
     loadingShow: state => state.loading.show,

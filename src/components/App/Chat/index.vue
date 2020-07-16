@@ -1,16 +1,60 @@
 <template>
     <base-app name="chat" title="聊天" class="chat-app" ref="ChatApp" @drop="drop">
-        <slot />
+        <v-card>
+            <v-list>
+                <v-list-item>
+                    <v-list-item-content>
+                        <v-list-item-title v-html="userNickname" class="title"></v-list-item-title>
+                        <v-list-item-subtitle v-html="userStatus" v-if="userStatus !== ''"></v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+            <template v-if="userOnline.length > 1">
+                <v-divider></v-divider>
+                <v-subheader inset>在线用户</v-subheader>
+                <v-list two-line subheader>
+                    <template v-for="user in userOnline">
+                        <v-list-item :key="user.sid" v-if="user.sid !== userSocketID" @click="clickUser">
+                            <v-list-item-avatar>
+                                <v-icon v-text="icon.mdiAccount"></v-icon>
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="user.nickname"></v-list-item-title>
+                                <v-list-item-subtitle
+                                    v-if="user.status !== ''"
+                                    v-text="user.status"
+                                ></v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </template>
+                </v-list>
+            </template>
+        </v-card>
     </base-app>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { mdiAccount } from '@mdi/js'
 
 export default {
     name: 'ChatApp',
     computed: {
-        ...mapGetters(['desktopWidth', 'desktopHeight', 'chatWidth', 'chatHeight']),
+        ...mapGetters([
+            'desktopWidth',
+            'desktopHeight',
+            'chatWidth',
+            'chatHeight',
+            'userNickname',
+            'userStatus',
+            'userOnline',
+            'userSocketID',
+        ]),
+    },
+    data() {
+        return {
+            icon: { mdiAccount },
+        }
     },
     mounted() {
         const { clientWidth, clientHeight } = this.$refs.ChatApp.$el
@@ -18,11 +62,13 @@ export default {
             width: clientWidth,
             height: clientHeight,
         })
+        // console.log(this.userOnline)
     },
     methods: {
         drop({ x, y }) {
             this.$store.dispatch('chat/setPos', { x, y })
         },
+        clickUser() {},
     },
 }
 </script>

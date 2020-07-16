@@ -89,6 +89,7 @@ const actions = {
         //     dispatch('background/setCover', '', { root: true })
         // })
         audio.play()
+        dispatch('user/setStatus', playing.title, { root: true })
     },
     play({ dispatch }) {
         server.on('play', ({ playing }) => {
