@@ -2,7 +2,7 @@ import storage from '../../utils/storage'
 
 const state = {
     name: 'chat',
-    zIndex: 10,
+    zIndex: storage.getJSON('Chat')['z'] || 10,
     x: storage.getJSON('Chat')['x'] || 0,
     y: storage.getJSON('Chat')['y'] || 0,
     width: 0,

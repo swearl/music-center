@@ -4,7 +4,7 @@ import server from '../../utils/server'
 
 const state = {
     name: 'music',
-    zIndex: 10,
+    zIndex: storage.getJSON('Music')['z'] || 10,
     x: storage.getJSON('Music')['x'] || 0,
     y: storage.getJSON('Music')['y'] || 0,
     width: 0,
