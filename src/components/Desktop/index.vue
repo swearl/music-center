@@ -2,6 +2,7 @@
     <v-container ref="desktop" v-if="desktopShow" fluid fill-height>
         <v-app-bar dense app>
             <v-spacer></v-spacer>
+            <search-box />
             <v-btn text>{{ nowDateTime }}</v-btn>
             <volume-icon />
             <v-btn @click="$store.dispatch('user/logout')" icon mini>
