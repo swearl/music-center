@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <music-center />
     <background />
   </div>
 </template>
@@ -20,18 +16,8 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
