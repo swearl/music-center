@@ -3,8 +3,16 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
+import 'reset-css';
 
 Vue.config.productionTip = false;
+
+const requireComponent = require.context('./components', false, /.+\.vue$/);
+requireComponent.keys().forEach((fileName) => {
+  const componentConfig = requireComponent(fileName);
+  const componentName = componentConfig.default.name;
+  Vue.component(componentName, componentConfig.default || componentConfig);
+});
 
 new Vue({
   router,

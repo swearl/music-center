@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="bg" src="@/assets/bg.jpg" />
-  </div>
+  <div class="home">Home</div>
 </template>
 
 <script>
