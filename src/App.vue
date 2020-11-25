@@ -6,6 +6,8 @@
 </template>
 
 <style lang="scss">
+@import '@/styles/vars.scss';
+
 #app {
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,5 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: $font-size;
+  color: $font-color;
 }
 </style>
