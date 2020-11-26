@@ -8,7 +8,7 @@
           <p class="title">Music Center</p>
           <div class="items">
             <nav-item to="/" icon="play-circle-outline" title="听歌" />
-            <nav-item to="/about" icon="play-circle-outline" title="About" />
+            <nav-item to="/about" icon="music" title="About" />
           </div>
         </div>
       </div>

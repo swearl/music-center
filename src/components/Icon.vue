@@ -33,6 +33,6 @@ export default {
 
 .mdi {
   font-size: $font-size + 4;
-  color: $font-color;
+  color: inherit;
 }
 </style>
