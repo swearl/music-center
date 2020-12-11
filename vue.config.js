@@ -20,5 +20,11 @@ module.exports = {
   productionSourceMap: process.env.NODE_ENV === 'production' ? false : true,
   devServer: {
     port: process.env.DEV_PORT,
+    proxy: {
+      '/api': {
+        target: process.env.SOCKET_SERVER,
+        changeOrigin: true,
+      },
+    },
   },
 };
