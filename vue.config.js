@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
   pwa: {
     name: process.env.APP_TITLE,
@@ -16,6 +18,9 @@ module.exports = {
       args[0].title = process.env.APP_TITLE;
       return args;
     });
+  },
+  configureWebpack: {
+    plugins: [new Dotenv()],
   },
   productionSourceMap: process.env.NODE_ENV === 'production' ? false : true,
   devServer: {

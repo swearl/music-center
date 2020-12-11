@@ -23,13 +23,16 @@
 </template>
 
 <script>
-import NavItem from './NavItem.vue';
+import api from '@/utils/api';
+
 export default {
-  components: { NavItem },
   name: 'MusicCenter',
   methods: {
     submit(txt) {
       console.log(txt);
+      api.search(txt).then((res) => {
+        console.log(res);
+      });
     },
   },
 };

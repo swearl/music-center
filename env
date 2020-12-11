@@ -1,3 +1,4 @@
 APP_TITLE=音乐中心
 DEV_PORT=8080
 SOCKET_SERVER=http://localhost:8080/
+METING_SERVER=http://localhost:8081/
