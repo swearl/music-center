@@ -48,7 +48,9 @@ export default {
   },
   methods: {
     play() {
-      console.log(this.songs);
+      const { songs } = this;
+      console.log(songs);
+      this.$emit('play', { songs });
     },
   },
 };

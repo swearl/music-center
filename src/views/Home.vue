@@ -2,8 +2,8 @@
   <div class="home">
     <div class="container">
       <div class="playlist">
-        <playlist-cover title="本日推荐" server="tencent" id="5874217138" />
-        <playlist-cover title="本周新歌推荐" server="tencent" id="6961910440" />
+        <playlist-cover title="本日推荐" server="tencent" id="5874217138" @play="onPlay" />
+        <playlist-cover title="本周新歌推荐" server="tencent" id="6961910440" @play="onPlay" />
       </div>
     </div>
   </div>
@@ -12,6 +12,12 @@
 <script>
 export default {
   name: 'Home',
+  methods: {
+    onPlay({ songs }) {
+      this.$store.dispatch('player/setPlaylist', songs);
+      this.$store.dispatch('player/setPlaying', songs[0]);
+    },
+  },
 };
 </script>
 

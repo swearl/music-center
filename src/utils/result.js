@@ -17,10 +17,12 @@ const result = {
           title: item.title,
           author: item.singer.map((artist) => artist.name).join(', '),
           duration: item.interval,
-          source: server,
-          url: `${process.env.METING_SERVER}?server=${server}&type=url&id=${item.mid}'`,
-          pic: `${process.env.METING_SERVER}?server=${server}&type=pic&id=${item.album.mid}'`,
-          lrc: `${process.env.METING_SERVER}?server=${server}&type=lrc&id=${item.mid}'`,
+          server,
+          id: item.mid,
+          url: `${process.env.METING_SERVER}?server=${server}&type=url&id=${item.mid}`,
+          pic: `${process.env.METING_SERVER}?server=${server}&type=pic&id=${item.album.mid}`,
+          lrc: `${process.env.METING_SERVER}?server=${server}&type=lrc&id=${item.mid}`,
+          playing: false,
         };
       }),
     };
