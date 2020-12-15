@@ -46,7 +46,8 @@ const actions = {
     commit('SET_PLAYLIST', playlist);
   },
   setVolume({ commit }, volume) {
-    commit('state', volume);
+    audio.setVolume(volume);
+    commit('SET_VOLUME', volume);
     localStorage.setItem('mcVolume', volume);
   },
 };

@@ -3,8 +3,8 @@
     <div class="button low">
       <icon name="volume-low" size="18px" />
     </div>
-    <div class="bar">
-      <div class="current" style="width: 30%"></div>
+    <div class="bar" @click="setVolume">
+      <div class="current" :style="{ width: `${playerVolume}%` }"></div>
     </div>
     <div class="button high">
       <icon name="volume-high" size="18px" />
@@ -13,8 +13,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'PlayerVolume',
+  computed: {
+    ...mapGetters(['playerVolume']),
+  },
+  methods: {
+    setVolume(e) {
+      const width = e.target.offsetWidth;
+      const current = e.clientX - e.target.offsetLeft;
+      const volume = parseInt((current / width) * 100);
+      this.$store.dispatch('player/setVolume', volume);
+    },
+  },
 };
 </script>
 
@@ -35,6 +48,7 @@ export default {
     background-color: #f2f2f2;
     border: 1px solid #e5e5e5;
     position: relative;
+    cursor: pointer;
 
     .current {
       position: absolute;
@@ -43,6 +57,7 @@ export default {
       background-color: #bfbfbf;
       border: 1px solid #b2b2b2;
       transition: all 0.3s ease-in-out;
+      pointer-events: none;
     }
   }
 }
