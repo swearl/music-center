@@ -6,16 +6,17 @@ const result = {
     return this[func](data);
   },
   formatTencentPlaylist(data) {
-    const item = data.data.data.cdlist[0];
+    const playlist = data.data.data.cdlist[0];
     const server = 'tencent';
     const result = {
-      title: item.dissname,
-      image: item.dir_pic_url2,
-      desc: item.desc,
-      songs: item.songlist.map((item) => {
+      title: playlist.dissname,
+      image: playlist.dir_pic_url2,
+      desc: playlist.desc,
+      songs: playlist.songlist.map((item) => {
         return {
           title: item.title,
           author: item.singer.map((artist) => artist.name).join(', '),
+          album: item.album.name,
           duration: item.interval,
           server,
           id: item.mid,

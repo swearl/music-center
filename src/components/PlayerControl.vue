@@ -1,20 +1,41 @@
 <template>
   <div class="player-control">
-    <div class="button prev disabled">
-      <icon name="rewind" size="28px" />
+    <div class="button prev" :class="{ disabled: !playing }">
+      <icon name="rewind" size="28px" @click="onPlayPrev" />
     </div>
-    <div class="button player">
-      <icon name="play" size="32px" />
+    <div class="button">
+      <icon :name="!playing ? 'play' : 'pause'" size="32px" @click="onPlay" />
     </div>
-    <div class="button next disabled">
-      <icon name="fast-forward" size="28px" />
+    <div class="button next" :class="{ disabled: !playing }">
+      <icon name="fast-forward" size="28px" @click="onPlayNext" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'PlayerControl',
+  computed: {
+    ...mapGetters(['playing']),
+  },
+  data() {
+    return {
+      playIcon: 'play',
+    };
+  },
+  methods: {
+    onPlay() {
+      this.playIcon = this.playIcon === 'play' ? 'pause' : 'play';
+    },
+    onPlayPrev() {
+      this.$store.dispatch('player/playPrev');
+    },
+    onPlayNext() {
+      this.$store.dispatch('player/playNext');
+    },
+  },
 };
 </script>
 
@@ -33,6 +54,7 @@ export default {
     &.disabled {
       cursor: unset;
       color: #c6c6c6;
+      pointer-events: none;
     }
   }
 }

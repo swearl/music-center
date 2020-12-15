@@ -1,5 +1,12 @@
 <template>
-  <i class="mdi" :class="className" :style="customStyle"></i>
+  <i
+    :class="{
+      mdi: true,
+      [`mdi-${name}`]: !!name,
+    }"
+    :style="customStyle"
+    @click="onClick"
+  ></i>
 </template>
 
 <script>
@@ -17,13 +24,17 @@ export default {
     };
   },
   mounted() {
-    this.className = { [`mdi-${this.name}`]: !!this.name };
     if (this.color) {
       this.customStyle['color'] = this.color;
     }
     if (this.size) {
       this.customStyle['font-size'] = this.size;
     }
+  },
+  methods: {
+    onClick() {
+      this.$emit('click');
+    },
   },
 };
 </script>

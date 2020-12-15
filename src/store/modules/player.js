@@ -40,7 +40,7 @@ const actions = {
     commit('SET_PLAYING', playing);
     audio.setSrc(playing.url);
     audio.play();
-    console.log(playlist, playing);
+    // console.log(playlist, playing);
   },
   setPlaylist({ commit }, playlist) {
     commit('SET_PLAYLIST', playlist);
@@ -49,6 +49,24 @@ const actions = {
     audio.setVolume(volume);
     commit('SET_VOLUME', volume);
     localStorage.setItem('mcVolume', volume);
+  },
+  playNext({ dispatch, state }) {
+    let index = state.playlist.findIndex((item) => item.playing === true);
+    index++;
+    if (index === state.playlist.length) {
+      index = 0;
+    }
+    const song = state.playlist[index];
+    dispatch('setPlaying', song);
+  },
+  playPrev({ dispatch, state }) {
+    let index = state.playlist.findIndex((item) => item.playing === true);
+    index--;
+    if (index < 0) {
+      index = state.playlist.length - 1;
+    }
+    const song = state.playlist[index];
+    dispatch('setPlaying', song);
   },
 };
 
