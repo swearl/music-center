@@ -33,7 +33,7 @@ export default {
   }
 
   .icon {
-    color: $red;
+    color: $main-color;
     padding: 0 5px;
   }
 }

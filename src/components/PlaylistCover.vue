@@ -2,6 +2,9 @@
   <router-link class="playlist-cover" :to="`/playlist/${server}/${id}`">
     <div class="title">{{ name }}</div>
     <div class="cover">
+      <div class="mask">
+        <icon-button class="button" name="play" @click="play" />
+      </div>
       <img :src="image" />
     </div>
   </router-link>
@@ -31,14 +34,22 @@ export default {
     return {
       image: '',
       name: '',
+      songs: [],
     };
   },
   created() {
     const { server, id } = this;
     meting.playlist(server, id).then((res) => {
+      console.log(res);
       this.image = res.image;
-      this.name = this.title === null ? res.title : this.title;
+      this.name = this.title || res.title;
+      this.songs = res.songs;
     });
+  },
+  methods: {
+    play() {
+      console.log(this.songs);
+    },
   },
 };
 </script>
@@ -53,18 +64,46 @@ export default {
   text-decoration: none;
 
   .title {
-    color: $red;
+    color: $main-color;
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 10px;
   }
 
   .cover {
+    position: relative;
+    border-radius: 5px;
+    width: 320px;
+    height: 240px;
+    overflow: hidden;
+
+    .mask {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(51, 51, 51, 0.3);
+      z-index: +1;
+
+      .button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
     img {
-      border-radius: 5px;
       width: 320px;
       height: 240px;
       object-fit: cover;
+    }
+  }
+
+  &:hover {
+    .cover {
+      .mask {
+        display: block;
+      }
     }
   }
 }
