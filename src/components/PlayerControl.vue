@@ -20,14 +20,9 @@ export default {
   computed: {
     ...mapGetters(['playing']),
   },
-  data() {
-    return {
-      playIcon: 'play',
-    };
-  },
   methods: {
     onPlay() {
-      this.playIcon = this.playIcon === 'play' ? 'pause' : 'play';
+      // this.playIcon = this.playIcon === 'play' ? 'pause' : 'play';
     },
     onPlayPrev() {
       this.$store.dispatch('player/playPrev');

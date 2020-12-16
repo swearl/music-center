@@ -7,12 +7,19 @@
     <div class="info">
       <icon name="apple" size="30px" color="#999999" v-if="!playing" />
       <template v-else>
-        <div class="title" v-html="playing.title" :title="playing.title"></div>
+        <div class="title" v-html="playing.title" :title="playing.title" />
         <div
           class="artist"
           v-html="`${playing.author} - ${playing.album}`"
           :title="`${playing.author} - ${playing.album}`"
-        ></div>
+        />
+        <div class="time">
+          <div class="current" v-html="currentTime"></div>
+          <div class="duration" v-html="durationTime"></div>
+          <div class="progress">
+            <div class="current" :style="{ width: `${progress}%` }"></div>
+          </div>
+        </div>
       </template>
     </div>
   </div>
@@ -25,7 +32,36 @@ export default {
   name: 'PlayerInfo',
   computed: {
     ...mapGetters(['playing']),
+    currentTime() {
+      if (this.playing.current) {
+        const min = Math.floor(this.playing.current / 60),
+          sec = this.playing.current % 60;
+        return [min.toString().padStart(2, '0'), sec.toString().padStart(2, '0')].join(':');
+      }
+      return '00:00';
+    },
+    durationTime() {
+      if (this.playing.duration) {
+        const min = Math.floor(this.playing.duration / 60),
+          sec = this.playing.duration % 60;
+        return [min.toString().padStart(2, '0'), sec.toString().padStart(2, '0')].join(':');
+      }
+      return '00:00';
+    },
+    progress: {
+      get() {
+        return this.playing.progress;
+      },
+      set(val) {
+        this.$store.dispatch('player/setProgress', val);
+      },
+    },
   },
+  // watch: {
+  //   'playing.current'() {
+  //     console.log(this.playing.current);
+  //   },
+  // },
 };
 </script>
 
@@ -55,6 +91,7 @@ export default {
   }
 
   .info {
+    position: relative;
     flex-grow: 1;
     display: flex;
     justify-content: center;
@@ -68,10 +105,12 @@ export default {
       text-overflow: ellipsis;
       font-size: $font-size;
       text-align: center;
+      position: relative;
+      z-index: +1;
     }
 
     .artist {
-      max-width: 380px;
+      max-width: 300px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -79,6 +118,63 @@ export default {
       line-height: $font-size + 2;
       color: #666666;
       text-align: center;
+      position: relative;
+      z-index: +1;
+    }
+
+    .time {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      // opacity: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      > .current,
+      > .duration {
+        color: #bdbdbd;
+        font-size: $font-size - 2;
+        margin-bottom: 5px;
+        opacity: 0;
+        transition: all 300ms ease-in-out;
+      }
+
+      > .current {
+        margin-left: 10px;
+      }
+
+      > .duration {
+        margin-right: 10px;
+      }
+
+      > .progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: #e5e5e5;
+
+        > .current {
+          transition: all 500ms ease-in-out;
+          background-color: #727272;
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 3px;
+        }
+      }
+    }
+
+    &:hover {
+      .time {
+        > .current,
+        > .duration {
+          opacity: 1;
+        }
+      }
     }
   }
 }

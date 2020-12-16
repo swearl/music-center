@@ -1,3 +1,4 @@
+// import Vue from 'vue';
 import audio from '@/utils/audio';
 
 const state = {
@@ -8,7 +9,10 @@ const state = {
 
 const mutations = {
   SET_PLAYING(state, playing) {
-    state.playing = playing;
+    state.playing = { ...playing };
+    // if (playing.current) {
+    //   Vue.set(state.playing, 'current', playing.current);
+    // }
   },
   SET_PLAYLIST(state, playlist) {
     state.playlist = playlist;
@@ -37,10 +41,28 @@ const actions = {
       playlist[songIndex].playing = true;
     }
     dispatch('setPlaylist', playlist);
-    commit('SET_PLAYING', playing);
+    // commit('SET_PLAYING', playing);
     audio.setSrc(playing.url);
-    audio.play();
+    audio.onProgress(({ target }) => {
+      const { currentTime, duration } = target;
+      playing.current = Math.floor(currentTime);
+      playing.duration = Math.floor(duration);
+      playing.progress = Math.round((playing.current / playing.duration) * 100);
+      commit('SET_PLAYING', playing);
+      // if (playing.pic) {
+      //   dispatch('background/setCover', playing.pic, { root: true });
+      // }
+      // storage.setJSON('MusicPlaying', playing)
+    });
+    audio.onEnded(() => dispatch('playNext'));
+    audio.play().catch(() => dispatch('playNext'));
     // console.log(playlist, playing);
+  },
+  setProgress({ state }, progress) {
+    if (state.playing.duration) {
+      const t = Math.floor((state.playing.duration * progress) / 100);
+      audio.setProgress(t);
+    }
   },
   setPlaylist({ commit }, playlist) {
     commit('SET_PLAYLIST', playlist);
