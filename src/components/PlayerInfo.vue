@@ -57,11 +57,6 @@ export default {
       },
     },
   },
-  // watch: {
-  //   'playing.current'() {
-  //     console.log(this.playing.current);
-  //   },
-  // },
 };
 </script>
 
@@ -158,7 +153,7 @@ export default {
         background-color: #e5e5e5;
 
         > .current {
-          transition: all 500ms ease-in-out;
+          transition: all 300ms ease-in-out;
           background-color: #727272;
           position: absolute;
           left: 0;

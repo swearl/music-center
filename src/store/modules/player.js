@@ -47,7 +47,7 @@ const actions = {
       const { currentTime, duration } = target;
       playing.current = Math.floor(currentTime);
       playing.duration = Math.floor(duration);
-      playing.progress = Math.round((playing.current / playing.duration) * 100);
+      playing.progress = (playing.current / playing.duration) * 100;
       commit('SET_PLAYING', playing);
       // if (playing.pic) {
       //   dispatch('background/setCover', playing.pic, { root: true });
@@ -55,7 +55,12 @@ const actions = {
       // storage.setJSON('MusicPlaying', playing)
     });
     audio.onEnded(() => dispatch('playNext'));
-    audio.play().catch(() => dispatch('playNext'));
+    audio
+      .play()
+      .then(() => dispatch('background/setBackground', playing.pic, { root: true }))
+      .catch(() => {
+        setTimeout(dispatch('playNext'), 1000);
+      });
     // console.log(playlist, playing);
   },
   setProgress({ state }, progress) {

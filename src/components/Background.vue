@@ -1,6 +1,8 @@
 <template>
   <div class="background">
-    <img class="background-image" :src="bgImage" />
+    <transition name="fade">
+      <img class="background-image" v-for="img in bgImgs" :src="img" :key="img" />
+    </transition>
   </div>
 </template>
 
@@ -9,16 +11,12 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'Background',
-  data() {
-    return {
-      bgImage: '',
-    };
-  },
   computed: {
     ...mapGetters(['backgroundImage']),
-  },
-  mounted() {
-    this.bgImage = this.backgroundImage === 'default' ? require('@/assets/bg.jpg') : this.backgroundImage;
+    bgImgs() {
+      const img = this.backgroundImage === 'default' ? require('@/assets/bg.jpg') : this.backgroundImage;
+      return [img];
+    },
   },
 };
 </script>
@@ -38,6 +36,22 @@ export default {
     object-fit: cover;
     display: block;
     filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 3s ease-in-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-leave,
+.fade-enter-to {
+  opacity: 1;
 }
 </style>

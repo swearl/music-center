@@ -8,6 +8,7 @@ const result = {
   formatTencentPlaylist(data) {
     const playlist = data.data.data.cdlist[0];
     const server = 'tencent';
+    // console.log(playlist);
     const result = {
       title: playlist.dissname,
       image: playlist.dir_pic_url2,
@@ -24,6 +25,7 @@ const result = {
           pic: `${process.env.METING_SERVER}?server=${server}&type=pic&id=${item.album.mid}`,
           lrc: `${process.env.METING_SERVER}?server=${server}&type=lrc&id=${item.mid}`,
           playing: false,
+          vip: item.pay.pay_play === 1 ? true : false,
         };
       }),
     };
