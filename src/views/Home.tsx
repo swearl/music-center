@@ -5,7 +5,7 @@ export default defineComponent({
   setup() {
     return () => (
       <>
-        <el-button>这是ElButton</el-button>
+        <el-button type="primary">这是ElButton</el-button>
       </>
     );
   },

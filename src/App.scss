@@ -1,0 +1,20 @@
+@import '~reset-css';
+
+$--color-primary: purple;
+$--font-path: '~element-plus/lib/theme-chalk/fonts';
+@import '~element-plus/packages/theme-chalk/src/index';
+
+html,
+body,
+#app,
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.nav {
+  background-color: $--color-primary;
+  color: $--color-white;
+}
