@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import ElementPlus from 'element-plus';
 import './App.scss';
+import './assets/fonts/fa/style.scss';
 import App from './App';
 import './registerServiceWorker';
 import router from './router';

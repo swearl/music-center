@@ -1,0 +1,73 @@
+@import '@/App.scss';
+
+@font-face {
+  font-family: 'fa';
+  src: url('fa-font.eot?t=928740');
+  src: url('fa-font.eot?t=928740#iefix') format('embedded-opentype'), url('fa-font.woff2?t=928740') format('woff2'),
+    url('fa-font.woff?t=928740') format('woff'), url('fa-font.ttf?t=928740') format('truetype'),
+    url('fa-font.svg?t=928740#fa') format('svg');
+}
+
+[class^='fa-icon-'] {
+  font-family: 'fa';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.el-button {
+  [class*='fa-icon-'] {
+    font-size: $--font-size-base - 2;
+
+    & + span {
+      margin-left: 5px;
+    }
+  }
+}
+
+/* Animation for spinners */
+.fa-spin {
+  animation: fa-spin-f 2s infinite linear;
+  display: inline-block;
+}
+/* @keyframes for IE10~ and major browsers */
+@keyframes fa-spin-f {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+/* Font Awesome Free, License: Font Awesome Free, Link: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt */
+.fa-icon-pause:before {
+  content: '\2711';
+}
+.fa-icon-play:before {
+  content: '\2712';
+}
+.fa-icon-step-backward:before {
+  content: '\2713';
+}
+.fa-icon-step-forward:before {
+  content: '\2714';
+}
+.fa-icon-stop:before {
+  content: '\2715';
+}
+.fa-icon-user:before {
+  content: '\2716';
+}
+.fa-icon-volume-down:before {
+  content: '\2717';
+}
+.fa-icon-volume-up:before {
+  content: '\2718';
+}
