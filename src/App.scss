@@ -12,9 +12,11 @@ body,
   height: 100vh;
   overflow: hidden;
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  color: $--color-primary;
 }
 
-.nav {
-  background-color: $--color-primary;
-  color: $--color-white;
+// .header,
+.footer {
+  background-color: $--color-primary-light-8;
+  color: $--color-primary;
 }

@@ -6,6 +6,9 @@
   src: url('fa-font.eot?t=928740#iefix') format('embedded-opentype'), url('fa-font.woff2?t=928740') format('woff2'),
     url('fa-font.woff?t=928740') format('woff'), url('fa-font.ttf?t=928740') format('truetype'),
     url('fa-font.svg?t=928740#fa') format('svg');
+  font-weight: normal;
+  font-display: $--font-display;
+  font-style: normal;
 }
 
 [class^='fa-icon-'] {

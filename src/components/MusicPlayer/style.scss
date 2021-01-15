@@ -1,3 +1,72 @@
+@import '@/App.scss';
+
 .music-player {
-  height: 50px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .el-button {
+    &.is-circle {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .desc {
+    display: flex;
+    align-items: center;
+    width: 260px;
+
+    .el-image {
+      width: 40px;
+      height: 40px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .info {
+      margin-left: 10px;
+      width: 210px;
+
+      h1,
+      h2 {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .progress {
+    flex-grow: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .el-progress-bar {
+      padding-right: 100px;
+      margin-right: -105px;
+    }
+
+    .el-progress__text {
+      color: $--color-primary;
+    }
+  }
+
+  .control {
+    width: 260px;
+    display: flex;
+    justify-content: flex-end;
+  }
 }

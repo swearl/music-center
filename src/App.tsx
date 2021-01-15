@@ -5,17 +5,22 @@ export default defineComponent({
   setup() {
     return () => (
       <el-container class="app-container">
-        <el-header class="nav">
-          <app-header />
-        </el-header>
         <el-container>
           <el-aside>
             <side-menu />
           </el-aside>
-          <el-main>
-            <router-view />
-          </el-main>
+          <el-container>
+            <el-header class="header">
+              <app-header />
+            </el-header>
+            <el-main>
+              <router-view />
+            </el-main>
+          </el-container>
         </el-container>
+        <el-footer class="footer">
+          <music-player />
+        </el-footer>
       </el-container>
     );
   },
