@@ -5,7 +5,7 @@ import './assets/fonts/fa/style.scss';
 import App from './App';
 import './registerServiceWorker';
 import router from './router';
-import store from './store';
+import { key, store } from './store';
 
 const app = createApp(App);
 
@@ -20,6 +20,6 @@ registerComponents();
 
 app
   .use(ElementPlus)
-  .use(store)
+  .use(store, key)
   .use(router)
   .mount('#app');

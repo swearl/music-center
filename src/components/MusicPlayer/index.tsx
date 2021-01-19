@@ -27,6 +27,7 @@ export default defineComponent({
           <el-button icon="fa-icon-step-backward" type="primary" circle />
           <el-button icon="fa-icon-play" type="primary" circle />
           <el-button icon="fa-icon-step-forward" type="primary" circle />
+          <el-button icon="fa-icon-volume-up" type="primary" circle />
         </div>
       </div>
     );

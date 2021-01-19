@@ -1,4 +1,5 @@
-import { defineComponent, ref } from 'vue';
+import { useStore } from '@/store';
+import { computed, defineComponent, ref } from 'vue';
 import './style.scss';
 
 export default defineComponent({
@@ -8,12 +9,14 @@ export default defineComponent({
     const onInput = (item: string) => {
       console.log(item, input.value);
     };
+    const store = useStore();
+    const volume = computed(() => store.getters.player.volume);
     return () => (
       <el-row class="app-header" type="flex" justify="space-between" align="middle">
         <el-col span="12">
           <el-input
             placeholder="请输入内容"
-            v-model={input.value}
+            v-model={volume.value}
             prefix-icon="el-icon-search"
             clearable
             onChange={onInput}
